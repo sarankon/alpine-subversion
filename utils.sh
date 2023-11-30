@@ -7,7 +7,7 @@ menu() {
     echo "3. reboot apache2"
     echo "0. exit"
 
-    read -r -p "select menu (1-2): " menu_selected
+    read -r -p "select menu (1-3): " menu_selected
 
     if [ "$menu_selected" = 1 ] ; then
         create_repo
