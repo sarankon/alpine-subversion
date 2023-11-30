@@ -39,7 +39,7 @@ create_user() {
     read -r -p "password: " password
 
     # echo "confirm password: "
-    read -r "confirm password" conf_password
+    read -r -p "confirm password" conf_password
 
     if [ "$password" = "$conf_password" ] ; then
         echo "creating user ..."
