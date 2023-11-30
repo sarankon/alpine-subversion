@@ -39,11 +39,12 @@ create_user() {
     read -r -p "password: " password
 
     # echo "confirm password: "
-    read -r -p "confirm password" conf_password
+    read -r -p "confirm password: " conf_password
 
     if [ "$password" = "$conf_password" ] ; then
         echo "creating user ..."
-        htpasswd -bc /etc/apache2/conf.d/davsvn.htpasswd "$username" "$password"
+        # htpasswd -bc /etc/apache2/conf.d/davsvn.htpasswd "$username" "$password"
+        htpasswd -b /etc/apache2/conf.d/davsvn.htpasswd "$username" "$password"
     else
         echo "password don't match"
     fi
