@@ -4,6 +4,7 @@ menu() {
 
     echo "1. create repo"
     echo "2. create user"
+    echo "3. reboot apache2"
     echo "0. exit"
 
     read -r -p "select menu (1-2): " menu_selected
@@ -12,14 +13,16 @@ menu() {
         create_repo
     elif [ "$menu_selected" = 2 ] ; then
         create_user
+    elif [ "$menu_selected" = 3 ] ; then
+        reboot_apache2
     else
         echo "selected menu invalid"
     fi
 }
 
 create_repo() {
-    echo "create repo name: "
-    read -r repo_name
+    echo "create repo"
+    read -r -p "repo name: " repo_name
 
     echo "creating repo ..."
     svnadmin create /var/svn/"$repo_name"
@@ -29,14 +32,14 @@ create_repo() {
 
 create_user() {
     echo "create user"
-    echo "username: "
-    read -r username
+    # echo "username: "
+    read -r -p "username: " username
 
-    echo "password: "
-    read -r password
+    # echo "password: "
+    read -r -p "password: " password
 
-    echo "confirm password: "
-    read -r conf_password
+    # echo "confirm password: "
+    read -r "confirm password" conf_password
 
     if [ "$password" = "$conf_password" ] ; then
         echo "creating user ..."
@@ -44,6 +47,11 @@ create_user() {
     else
         echo "password don't match"
     fi
+}
+
+reboot_apache2() {
+    echo "rebooting apache2"
+    service apache2 restart
 }
 
 menu
